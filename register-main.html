@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register Codex Main Account</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #0f172a;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .form-container {
+    background-color: #1e293b;
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  }
+
+  h2 {
+    text-align: center;
+    color: #38bdf8;
+    margin-bottom: 20px;
+  }
+
+  input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 16px;
+    border: none;
+    border-radius: 8px;
+    background: #334155;
+    color: #e2e8f0;
+    font-size: 15px;
+  }
+
+  input::placeholder {
+    color: #94a3b8;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+    background-color: #22c55e;
+    color: #0f172a;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  button:hover {
+    background-color: #16a34a;
+    transform: scale(1.02);
+  }
+
+  button:disabled {
+    background-color: #334155;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  /* Spinner animation */
+.spinner {
+  border: 3px solid #94a3b8;
+  border-top: 3px solid #38bdf8;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Success popup */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background-color: #1e293b;
+    color: #38bdf8;
+    padding: 25px;
+    border-radius: 12px;
+    font-size: 18px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 999;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .popup.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .logo-animation {
+    font-size: 40px;
+    animation: pop-glow 1.5s infinite ease-in-out;
+    margin-bottom: 10px;
+  }
+
+  @keyframes pop-glow {
+    0%, 100% {
+      text-shadow: 0 0 10px #38bdf8, 0 0 20px #0ea5e9;
+      transform: scale(1);
+    }
+    50% {
+      text-shadow: 0 0 20px #7dd3fc, 0 0 30px #0ea5e9;
+      transform: scale(1.1);
+    }
+  }
+
+  .spinner {
+    border: 3px solid #94a3b8;
+    border-top: 3px solid #38bdf8;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    animation: spin 0.8s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  button:disabled {
+    background-color: #334155;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+</style>
+</head>
+<div class="form-container">
+  <form action="https://codex145.great-site.net/register-main.php" method="POST">
+    <input type="text" name="username" placeholder="Username" required />
+    <input type="email" name="email" placeholder="Email" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <button type="submit">Create Main Account</button>
+  </form>
+  <div id="popup" class="popup">
+  <div class="logo-animation">⚙️</div>
+  <p>Codex Main Account Created!</p>
+  <small>Redirecting to dashboard...</small>
+</div>
+</div>
+<!-- Spinner + Popup container -->
+<div id="popup" class="popup">
+  <div class="logo-animation">⚙️</div>
+  <p>Codex Main Account Created!</p>
+  <small>Redirecting to dashboard...</small>
+</div>
+
+<script>
+  const form = document.querySelector("form");
+  const button = document.querySelector("button");
+  const popup = document.getElementById("popup");
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    button.innerHTML = `<span class="spinner"></span> Creating...`;
+    button.disabled = true;
+
+    const formData = new FormData(form);
+    const data = {
+      username: formData.get("username"),
+      email: formData.get("email"),
+      password: formData.get("password")
+    };
+
+    const response = await fetch("/.netlify/functions/register", {
+      method: "POST",
+      body: JSON.stringify(data)
+    });
+    
+    fetch('/.netlify/functions/register', {
+  method: 'POST',
+  body: JSON.stringify({ username, email, password })
+});
+
+    try {
+      const result = await response.json();
+
+      if (response.ok) {
+        popup.classList.add("show");
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 3000);
+      } else {
+        alert("❌ " + result.message || "Registration failed.");
+        button.innerText = "Create Main Account";
+        button.disabled = false;
+      }
+
+    } catch (err) {
+      alert("❌ Server error or response failed.");
+      button.innerText = "Create Main Account";
+      button.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>

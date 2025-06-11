@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codex – Learn. Build. Grow.</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0f1117;
+      color: #f1f1f1;
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      background-color: #1a1d29;
+      border-bottom: 1px solid #333;
+    }
+  
+    .topbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #1e293b;
+  padding: 10px;
+  position: relative;
+}
+
+.logo-button img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.nav {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  background-color: #0f172a;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.nav a {
+  color: #38bdf8;
+  text-decoration: none;
+  padding: 10px 0;
+  font-weight: bold;
+}
+
+.nav-hidden {
+  display: none !important;
+}
+
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(120deg, #1f2637, #2c3e50);
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero span {
+      color: #4fc3f7;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta {
+      background-color: #4fc3f7;
+      color: #0f1117;
+      padding: 0.8rem 1.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    .cta:hover {
+      background-color: #36a9e0;
+    }
+  .tool-card {
+  background-color: #1e293b;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
+  color: #e2e8f0;
+  transition: transform 0.2s ease;
+}
+.tool-card:hover {
+  transform: scale(1.03);
+}
+.tool-card a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #38bdf8;
+  color: #0f172a;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.tool-card img {
+  border-radius: 50%;
+}
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 3rem 2rem;
+      background-color: #181c27;
+    }
+
+    .feature-card {
+      background-color: #232a3d;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(79, 195, 247, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-card h2 {
+      margin-bottom: 1rem;
+      color: #4fc3f7;
+    }
+  
+  .feature-section {
+  background: #1e1e2f;
+  padding: 40px 20px;
+  text-align: center;
+  color: #fff;
+  border-radius: 12px;
+  margin: 40px auto;
+  max-width: 800px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+.feature-section h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+.feature-section p {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+.feature-section .btn {
+  background: #ff3c6d;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+.feature-section .btn:hover {
+  background: #e6325c;
+}
+
+    .about {
+      padding: 4rem 2rem;
+      background-color: #0f1117;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .about h2 {
+      font-size: 2rem;
+      color: #4fc3f7;
+      margin-bottom: 1rem;
+    }
+
+    .about p {
+      font-size: 1.1rem;
+      color: #ccc;
+      margin-bottom: 1rem;
+    }
+
+    .about strong {
+      color: #ffffff;
+    }
+
+    .contact {
+      padding: 3rem 2rem;
+      background-color: #1a1d29;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 1.8rem;
+      color: #4fc3f7;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact p {
+      font-size: 1.05rem;
+      margin: 0.5rem 0;
+      color: #ddd;
+    }
+
+    .contact a {
+      color: #4fc3f7;
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #181c27;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  
+   .feature-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
+}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+  <div class="logo-button" onclick="toggleNav()">
+    Codex navigation bar
+    <img src="logo.png" alt="Codex Logo">
+  </div>
+</header>
+
+<nav id="mobileNav" class="nav nav-hidden">
+  <a href="dashboard-main.html">Dashboard</a>
+  <a href="register-main.html">Account</a>
+  <a href="codex-subscription-payment.html">Plans</a>
+  <a href="index.html">Home</a>
+  <a href="tools.html">Tools</a>
+  <a href="ebooks.html">eBooks</a>
+  <a href="tutoring.html">tutoring</a>
+</nav>
+  <section class="feature-section">
+  <h2>🔐 Codex Account</h2>
+  <p>Create your free Codex account to access all tools, eBooks, and exclusive tutoring sessions. Sign up today and unlock the full power of Codex!</p>
+  <a href="register-main.html" class="btn">Login / Sign Up</a>
+</section>
+
+  <section class="hero">
+    <h1>Welcome to <span>Codex</span></h1>
+    <p>Where technology meets creativity, and learning never stops.</p>
+    <a href="#" class="cta">Explore Content</a>
+  </section>
+  
+  <section class="features">
+    <div class="tool-card">
+  <img src="tutoring.jpeg" alt="Tutoring Icon" style="width: 60px; margin-bottom: 10px;" />
+  <h3>Online Tutoring</h3>
+  <p>Join live Codex sessions and learn tech skills from real tutors.</p>
+  <a href="tutoring.html">Start Learning</a>
+</div>
+    <div class="feature-card">
+      <h2>🎥 Tech Videos</h2>
+      <p>Short-form content to learn, laugh, and level up your tech skills.</p>
+    </div>
+    <a href="tools.html" style="text-decoration: none; color: inherit;">
+  <div class="feature-card">
+    <h2>🛠️ Tools</h2>
+    <p>Scripts, troubleshooters, and useful tech utilities built for real-life use.</p>
+  </div>
+</a>
+    <a href="ebooks.html" style="text-decoration: none; color: inherit;">
+  <div class="feature-card">
+    <h2>📘 eBooks</h2>
+    <p>Free tech eBooks to grow your knowledge and digital skills.</p>
+  </div>
+</a>
+  </section>
+
+  <section class="about">
+    <h2>What We Do at Codex</h2>
+    <p><strong>Codex</strong> is more than just a content hub — it's your companion in the journey through tech.</p>
+    <p>We create <strong>snappy, impactful videos</strong> for platforms like TikTok and YouTube, <strong>easy-to-follow eBooks</strong> for beginners, and <strong>interactive tools</strong> to help you grow as a techie.</p>
+    <p>Whether you're a student, a self-learner, or just curious, our mission is to make tech <strong>fun, accessible, and practical</strong> — one short video or script at a time.</p>
+    <p>We’re building a community of learners, coders, and creators. You're welcome here. Let's grow together.</p>
+  </section>
+
+  <section class="contact">
+    <h2>Contact Us</h2>
+    <p>Email: <a href="mailto:Codexgamerz145@gmail.com">Codexgamerz145@gmail.com</a></p>
+    <p>Phone: <a href="tel:+256747500107">+256 747 500 107</a></p>
+    <p>TikTok: <a href="https://www.tiktok.com/@CodexHacks" target="_blank">@CodexHacks</a></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Codex by Akram. All rights reserved.</p>
+  </footer>
+  
+<!-- Codex Assistant Button and Popup --><style>
+  #codex-assistant-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 65px;
+    height: 65px;
+    background: #1f1f2e;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #00ffc3;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 9999;
+    transition: background 0.3s, box-shadow 0.3s ease;
+  }
+
+  #codex-assistant-btn:hover {
+    background: #50e3c2;
+  }
+
+  #codex-assistant-btn.active {
+    background: #50e3c2;
+    box-shadow: 0 0 20px #50e3c2;
+  }
+
+  #assistant-popup {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 300px;
+    background: rgba(30, 30, 40, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(80, 227, 194, 0.5);
+    padding: 20px;
+    color: #fff;
+    z-index: 9998;
+    display: none;
+  }
+
+  #assistant-popup[aria-hidden="false"] {
+    display: block;
+    animation: fadeInUp 0.4s ease;
+  }
+
+  #assistant-response {
+    margin-top: 10px;
+    min-height: 40px;
+    font-size: 0.9rem;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .thinking::after {
+    content: '⏳ Thinking...';
+    animation: pulse 1s infinite;
+    display: inline-block;
+    margin-left: 10px;
+    color: #00ffc3;
+  }
+
+  @keyframes pulse {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+  }
+</style><button id="codex-assistant-btn" aria-label="Codex Assistant">AI</button>
+
+<div id="assistant-popup" aria-hidden="true">
+  <strong>Codex Assistant</strong>
+  <input type="text" id="assistant-input" placeholder="Ask about Codex..." style="width: 100%; padding: 8px; margin-top: 10px; border-radius: 5px; border: none;">
+  <div id="assistant-response"></div>
+</div><script>
+  const btn = document.getElementById("codex-assistant-btn");
+  const popup = document.getElementById("assistant-popup");
+  const input = document.getElementById("assistant-input");
+  const response = document.getElementById("assistant-response");
+
+  const staticAnswers = {
+    "what is codex": "Codex is an all-in-one platform for learning programming, accessing tools, tutorials, flashcards, quizzes, and personalized tutoring.",
+    "what do you do": "We help learners by offering curated content, AI-powered tools, and dashboards to enhance coding skills.",
+    "python": "Python is a beginner-friendly language known for its simplicity and versatility in web dev, data science, automation, and AI.",
+    "html": "HTML stands for HyperText Markup Language. It structures the content on the web using tags like <h1>, <p>, <div> etc.",
+    "css": "CSS (Cascading Style Sheets) styles HTML elements with color, layout, fonts, and animations.",
+    "javascript": "JavaScript adds interactivity to websites. It's used for dynamic content, event handling, animations, and more."
+  };
+
+  btn.addEventListener("click", () => {
+    const isHidden = popup.getAttribute("aria-hidden") === "true";
+    popup.setAttribute("aria-hidden", !isHidden);
+    btn.classList.toggle("active", isHidden);
+    if (isHidden) input.focus(); else btn.blur();
+  });
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const question = input.value.toLowerCase().trim();
+      response.textContent = "";
+      response.classList.add("thinking");
+
+      setTimeout(() => {
+        response.classList.remove("thinking");
+        response.textContent = staticAnswers[question] || "I'm still learning. Please try a simpler question.";
+      }, 1000);
+    }
+  });
+
+  
+  function toggleNav() {
+    const nav = document.getElementById("mobileNav");
+    nav.classList.toggle("nav-hidden");
+  }
+</script>
+</body>
+</html>

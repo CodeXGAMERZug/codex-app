@@ -1,0 +1,8 @@
+{
+  "name": "codex-app",
+  "version": "1.0.0",
+  "dependencies": {
+    "pg": "^8.10.0",
+    "bcryptjs": "^2.4.3"
+  }
+}
